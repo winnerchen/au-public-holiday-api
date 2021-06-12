@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import * as moment from 'moment';
+import moment from 'moment';
 import { holidays } from '../resources/init';
 import logger from '../logger';
+import { mapperFnMap } from '../util';
 
 const getPredicate = (queryName: string, queryValue: any) => {
   switch (queryName) {
@@ -32,6 +33,14 @@ const getPredicate = (queryName: string, queryValue: any) => {
         return true
       }
   }
+}
+
+export function listMetaData(req: Request, res: Response) {
+  const { attributeName } = req.query;
+
+  let results: string[] = holidays.map(mapperFnMap[attributeName as string]);
+
+  res.json([...new Set(results)]);
 }
 
 export function listHolidays(req: Request, res: Response) {

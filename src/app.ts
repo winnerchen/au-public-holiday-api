@@ -1,7 +1,7 @@
-import * as express from 'express';
+import express from 'express';
 import { HolidayRouter } from './routes';
 import init from './resources/init'
-import * as cors from 'cors';
+import cors from 'cors';
 
 
 // Create Express server

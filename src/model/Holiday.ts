@@ -3,6 +3,7 @@ interface Holiday {
   name: string;
   description: string;
   state: string;
+  year: string;
 }
 
 

@@ -1,6 +1,7 @@
-import * as csv from 'csv-parser';
-import * as fs from 'fs';
-import * as path from 'path';
+import csv from 'csv-parser';
+import fs from 'fs';
+import moment from 'moment';
+import path from 'path';
 import logger from '../logger';
 
 export const holidays: Holiday[] = [];
@@ -24,7 +25,8 @@ const _getDataProcessor = (directory: string) => {
             date: data.Date,
             name: data['Holiday Name'],
             description: data.Information,
-            state
+            state,
+            year: moment(data.Date).year().toString(),
           }
           holidays.push(holiday);
         })
@@ -35,7 +37,8 @@ const _getDataProcessor = (directory: string) => {
           date: data.Date,
           name: data['Holiday Name'],
           description: data.Information,
-          state: data.Jurisdiction
+          state: data.Jurisdiction,
+          year: moment(data.Date).year().toString(),
         }
         holidays.push(holiday);
       }

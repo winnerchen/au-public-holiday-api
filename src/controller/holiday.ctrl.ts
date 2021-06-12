@@ -38,7 +38,7 @@ const getPredicate = (queryName: string, queryValue: any) => {
 export function listMetaData(req: Request, res: Response) {
   const { attributeName } = req.query;
 
-  let results: string[] = holidays.map(mapperFnMap[attributeName as string]);
+  const results: string[] = holidays.map(mapperFnMap[attributeName as string]);
 
   res.json([...new Set(results)]);
 }
